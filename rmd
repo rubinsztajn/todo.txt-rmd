@@ -1,0 +1,37 @@
+#!/bin/bash
+
+action=$1
+shift
+
+function usage() {
+  echo "  Reminder:"
+  echo "    rmd ITEM# YYYY-MM-DD H:MMpm"
+  echo "      sends task reminder to Reminder.app"
+  echo ""
+  exit    
+}
+
+[ "$action" = "usage" ] && usage
+
+number=$1
+date=$2
+time=$3
+
+if [ $number == ''] || [ $date == '']; then
+    usage
+    exit
+fi
+
+
+item=`sed -n "${number}p" "$TODO_FILE"`
+r_date=`date -jf "%Y-%m-%d" $date +"%m/%d/%Y"`
+
+$TODO_SH append $number "r:$date"
+
+osascript <<EOD
+  tell application "Reminders"
+     make new reminder with properties {name:"$item", remind me date: date "$r_date $time"} at the end of list "Todo"
+  end tell  
+EOD
+
+
