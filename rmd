@@ -17,12 +17,6 @@ number=$1
 date=$2
 time=$3
 
-if [ $number == ''] || [ $date == '']; then
-    usage
-    exit
-fi
-
-
 item=`sed -n "${number}p" "$TODO_FILE"`
 r_date=`date -jf "%Y-%m-%d" $date +"%m/%d/%Y"`
 
