@@ -1,7 +1,7 @@
 # Reminder
 
-Todo.txt add on to send a task to Apple's Reminders.app with a date and
-time to nag you with a reminder.
+Todo.txt add on to send a task to Apple's Reminders.app because
+sometimes I need to be nagged by my computer.
 
 ## Usage
 
